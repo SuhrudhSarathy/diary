@@ -22,6 +22,16 @@ diary new -m Jul -y 2022
 This creates a folder with weeks and subdirectories and a Markdown file for each day.
 3. Each day is a diary entry.
 
+## Additional features
+1. For more information about the tool, use `help`
+```
+diary --help
+```
+2. To get an explanation for a tool, use `explain`
+```
+diary --explain
+```
+
 ## TODO
 - [ ] Implement searching by tags
 - [ ] Pretty print entries with sub directories
