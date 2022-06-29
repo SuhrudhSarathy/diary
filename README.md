@@ -33,6 +33,7 @@ diary --explain
 ```
 
 ## TODO
+- [ ] Implement Goto functionality
 - [ ] Implement searching by tags
 - [ ] Pretty print entries with sub directories
 - [ ] Proper documentation

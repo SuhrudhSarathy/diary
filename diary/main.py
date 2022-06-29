@@ -1,33 +1,10 @@
 from create_files import *
 from init import *
+from list_functions import *
+from print_color import *
 
 import os
 import argparse
-
-# Printing colored stuff
-
-def prRed(skk): print("\033[91m {}\033[00m" .format(skk))
- 
- 
-def prGreen(skk): print("\033[92m {}\033[00m" .format(skk))
- 
- 
-def prYellow(skk): print("\033[93m {}\033[00m" .format(skk))
- 
- 
-def prLightPurple(skk): print("\033[94m {}\033[00m" .format(skk))
- 
- 
-def prPurple(skk): print("\033[95m {}\033[00m" .format(skk))
- 
- 
-def prCyan(skk): print("\033[96m {}\033[00m" .format(skk))
- 
- 
-def prLightGray(skk): print("\033[97m {}\033[00m" .format(skk))
- 
- 
-def prBlack(skk): print("\033[98m {}\033[00m" .format(skk))
 
 """Goal of the file:
 1. Should be able to initialise a diary in any folder
@@ -56,6 +33,14 @@ elif args.command == "new":
     year = args.year
 
     create_files(year, month)
+
+elif args.command == "list":
+    tag = args.tag
+
+    get_list_tag(tag)
+    
+elif args.command == "update":
+    update()
 
 # Explain
 if args.explain== "init":
