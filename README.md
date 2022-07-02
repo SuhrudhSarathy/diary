@@ -8,6 +8,7 @@ A command line tool to imitate your Research Diary.
 export DIARY_PATH=<path_to_cloned_folder>
 alias diary="python $DIARY_PATH/diary/main.py"
 ```
+If you are using a linux system, use `python3` instead of `python` in the above command.
 3. You can now use the diary tools using the keyword `diary`
 
 ## Usage
@@ -19,7 +20,7 @@ diary init
 ```bash
 diary new -m Jul -y 2022
 ```
-This creates a folder with weeks and subdirectories and a Markdown file for each day.
+This creates a folder with weeks and a Markdown file for each day.
 3. Each day is a diary entry.
 
 ## Additional features

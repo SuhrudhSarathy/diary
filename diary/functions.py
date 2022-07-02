@@ -21,20 +21,6 @@ months = {
 
 days = ["Mon", "Tue", "Wed", "Thurs", "Fri", "Sat", "Sun"]
 
-material = """---
-date: DATE
-day: DAY
-tag:
-description:
----
-
-# DATE
-## ToDo
-- [ ] Task 1
-- [ ] Task 2
-
-"""
-
 def initialise_diary() :
     pwd = os.getcwd()
 
@@ -92,7 +78,6 @@ def update():
     else:
         for f in tag_files:
             tag = f.replace(".txt", "")
-
             tag_dict[tag] = []
 
     for month in months_in_diary:
@@ -142,9 +127,30 @@ def update():
     date = data[1]
     prRed(f"Update Completed. Last updated on {date}")
 
-def generate_text(date: str, day: int)->str:
-    string = material.replace("DATE", date)
-    string = string.replace("DAY", str(days[day]))
+def generate_text(date: str, day: int, file_location: str=None)->str:
+    material = """---
+    date: DATE
+    day: DAY
+    tag:
+    description:
+    ---
+
+    # DATE
+    ## ToDo
+    - [ ] Task 1
+    - [ ] Task 2
+
+    """
+
+    if file_location is None:
+        string = material.replace("DATE", date)
+        string = string.replace("DAY", str(days[day]))
+
+    else:
+        with open(file_location, "r") as file:
+            material = file.read()
+        string = material.replace("DATE", date)
+        string = string.replace("DAY", str(days[day]))
 
     return string
 
@@ -166,7 +172,7 @@ def create_week_folders(folder_path, n):
             raise Exception("Cannot create folder here. Check path once")
 
 
-def create_files(year, month, **kwargs):
+def create_files(year, month, file_location=None, **kwargs):
     """Creates the required files for the given (year, month).
     The format of the folder is as follows:
     month/
@@ -181,6 +187,7 @@ def create_files(year, month, **kwargs):
     Args:
         year: int
         month: str
+        file_location: str
     kwargs:
         include_weekends: bool = False, default
     """
@@ -223,7 +230,7 @@ def create_files(year, month, **kwargs):
                     if date != 0 and (i != 5 and i != 6):
                         # this is to handle empty dates in the week
                         date = f"{date}-{months[month]}-{year}"
-                        file_str = generate_text(date, i)
+                        file_str = generate_text(date, i, file_location)
                         file_path = os.path.join(month_path, week_folders[w], date+".md")
                         if f"{date}.md" in os.listdir(os.path.join(month_path, week_folders[w])):
                             raise Exception("File already exists. Continuing will cause rewriting every file. To rewrite everything use `diary clean` in the directory")
@@ -232,7 +239,7 @@ def create_files(year, month, **kwargs):
                 else:
                     if date != 0:
                         date = f"{date}-{months[month]}-{year}"
-                        file_str = generate_text(date, i)
+                        file_str = generate_text(date, i, file_location)
                         file_path = os.path.join(month_path, week_folders[w], date+".md")
                         if f"{date}.md" in os.listdir(os.path.join(month_path, week_folders[w])):
                             raise Exception("File already exists. Continuing will cause rewriting every file. To rewrite everything use `diary clean` in the directory")

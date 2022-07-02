@@ -19,6 +19,7 @@ parser.add_argument("option", help="Supporting option to a command", default="no
 parser.add_argument("-e", "--explain", help="Ask for help on any command. Eg `diary -e new`")
 parser.add_argument("-y", "--year", help="Specify the year", type=int)
 parser.add_argument("-m", "--month", help="Specify the month")
+parser.add_argument("-f", "--file", help="Insert the file location")
 
 args = parser.parse_args()
 if args.command == "init":
@@ -28,8 +29,9 @@ elif args.command == "new":
     # Handle the month and year using positional arguments
     month = args.month
     year = args.year
+    file_location = args.file
 
-    create_files(year, month)
+    create_files(year, month, file_location)
 
 elif args.command == "list":
     tag = args.option
@@ -51,7 +53,7 @@ elif args.explain == "new":
     parser.print_help()
     prGreen("Explanation:\n\tThe `new` command creates new diary entries.\n Example:")
     prCyan("\tdiary new -m Jul -y 2022")
-    prCyan("\tdiary new -m Jan -y 2021")
+    prCyan("\tdiary new -m Jan -y 2021 -f experiment.md")
 
 elif args.explain == "list":
     parser.print_help()
