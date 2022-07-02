@@ -47,20 +47,16 @@ else:
 # For explain
 # Explain
 if args.explain== "init":
-    parser.print_help()
     prGreen("Explanation:\n\tThe `init` command initialises the diary.")
 elif args.explain == "new":
-    parser.print_help()
     prGreen("Explanation:\n\tThe `new` command creates new diary entries.\n Example:")
     prCyan("\tdiary new -m Jul -y 2022")
     prCyan("\tdiary new -m Jan -y 2021 -f experiment.md")
 
 elif args.explain == "list":
-    parser.print_help()
     prGreen("Explanation:\n\tThe `list` command lists the entries with a give tag.\n Example:")
     prCyan("\tdiary list ml")
     prCyan("\tdiary list robotics")
 
 elif args.explain == "update":
-    parser.print_help()
     prGreen("Explanation:\n\tThe `update` command updates the record for all files and tags.")

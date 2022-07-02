@@ -254,13 +254,15 @@ def get_list_tag(tag):
     tags = [t.replace(".txt", "") for t in tags]
 
     if tag == "none":
-        # Just list the available tags
-        prCyan("The list of all available tags: ")
-        for tag_ in tags:
-            prGreen("- " + tag_)
-        print()
-        prCyan("To get the list of each tag", end="")
-            
+        if len(tags) == 0:
+            prRed("There are no tags loaded. Update the diary using ", end="")
+            prCyan("diary update")
+        else:
+            # Just list the available tags
+            prCyan("The list of all available tags: ")
+            for tag_ in tags:
+                prGreen("- " + tag_)
+            print()
     else:
         if tag not in tags:
             prRed("Did not find the listed tag", end="")
@@ -271,7 +273,7 @@ def get_list_tag(tag):
         
         else:
             prRed(f"This is a list of all the entries with the tag", end="")
-            prCyan(f"`tag`")
+            prCyan(f"{tag}")
             tag_file = os.path.join(".diary/tags", tag + ".txt")
 
             with open(tag_file, "r") as file:

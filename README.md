@@ -44,3 +44,6 @@ diary --help
 ```
 diary --explain
 ```
+
+## Wiki
+Take a look at the sample usage in the [Wiki](https://github.com/SuhrudhSarathy/diary/wiki)
